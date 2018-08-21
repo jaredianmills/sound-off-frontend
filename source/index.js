@@ -28,15 +28,21 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {}, 50)
   }
 
+  let continueGame = true
 
   function playGame() {
-    setInterval(() => {
-      randomlyLightUpKey()
+    let gameInterval = setInterval(() => {
+      if (continueGame === true) {
+        randomlyLightUpKey()
+      } else {
+        clearInterval(gameInterval)
+        alert('game over man')
+      }
     }, 2000)
     checkKey()
   }
 
-  // playGame()
+  playGame()
   let score = 0
 
   function checkKey() {
@@ -49,6 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
           correctKeyPressed(highlightedBox)
         } else {
           wrongKeyPressed(highlightedBox)
+          continueGame = false
         }
       }
     })
