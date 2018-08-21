@@ -14,3 +14,14 @@
   margin: 1%;
   text-align: center;
 }
+
+.lit-up-box {
+  background-color: blue;
+  width: 10.5%;
+  height: 10%;
+  top: 40%;
+  position: relative;
+  float: left;
+  margin: 1%;
+  text-align: center;
+}
