@@ -33,24 +33,24 @@ document.addEventListener('DOMContentLoaded', () => {
   function playGame() {
     setInterval(() => {
       randomlyLightUpKey()
-      checkKey()
     }, 2000)
+    checkKey()
   }
 
-  playGame()
+  // playGame()
   let score = 0
 
   function checkKey() {
     window.addEventListener("keydown", (e) => {
       e.preventDefault()
-      let highlightedBox = document.querySelector(".lit-up-box")
-      // debugger
-      if (e.key.toUpperCase() === highlightedBox.innerText[0]) {
-        e.stopPropagation()
-        score += 10
-        console.log(score)
-        // debugger
-        // implement score here
+      let highlightedBox
+      if (document.querySelector(".lit-up-box")) {
+        highlightedBox = document.querySelector(".lit-up-box")
+        if (e.key.toUpperCase() === highlightedBox.innerText[0]) {
+          score += 10
+          console.log(score)
+          // implement score here
+        }
       }
     })
   }
