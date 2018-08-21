@@ -25,3 +25,26 @@
   margin: 1%;
   text-align: center;
 }
+
+
+.correct-key {
+  background-color: green;
+  width: 10.5%;
+  height: 10%;
+  top: 40%;
+  position: relative;
+  float: left;
+  margin: 1%;
+  text-align: center;
+}
+
+.incorrect-key {
+  background-color: red;
+  width: 10.5%;
+  height: 10%;
+  top: 40%;
+  position: relative;
+  float: left;
+  margin: 1%;
+  text-align: center;
+}

@@ -14,9 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // console.log(keyBoxes);
 
   function randomlyLightUpKey() {
-    let boxToHighlight
     let keyBoxNumber = Math.ceil((Math.random() * keyBoxes.length) )
-    boxToHighlight = document.getElementById(`key-box-${keyBoxNumber}`)
+    let boxToHighlight = document.getElementById(`key-box-${keyBoxNumber}`)
     // console.log(`key-box-${keyBoxNumber}`);
     boxToHighlight.classList.remove('key-box')
     boxToHighlight.classList.add('lit-up-box')
@@ -25,8 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       boxToHighlight.classList.remove('lit-up-box')
       boxToHighlight.classList.add('key-box')
-      setTimeout(() => {}, 50)
     }, 1950)
+    setTimeout(() => {}, 50)
   }
 
 
@@ -47,12 +46,37 @@ document.addEventListener('DOMContentLoaded', () => {
       if (document.querySelector(".lit-up-box")) {
         highlightedBox = document.querySelector(".lit-up-box")
         if (e.key.toUpperCase() === highlightedBox.innerText[0]) {
-          score += 10
-          console.log(score)
-          // implement score here
+          correctKeyPressed(highlightedBox)
+        } else {
+          wrongKeyPressed(highlightedBox)
         }
       }
     })
   }
+
+  function correctKeyPressed(highlightedBox) {
+    highlightedBox.classList.remove('lit-up-box')
+    highlightedBox.classList.add('correct-key')
+    setTimeout(() => {
+      highlightedBox.classList.remove('correct-key')
+      highlightedBox.classList.add('key-box')
+    }, 100)
+    score += 10
+    console.log(score)
+    // implement score here
+  }
+
+
+  function wrongKeyPressed(highlightedBox) {
+    highlightedBox.classList.remove('lit-up-box')
+    highlightedBox.classList.add('incorrect-key')
+    setTimeout(() => {
+      highlightedBox.classList.remove('incorrect-key')
+      highlightedBox.classList.add('key-box')
+    }, 100)
+  }
+
+
+
 
 })
