@@ -11,30 +11,48 @@ document.addEventListener('DOMContentLoaded', () => {
   const mainPlayArea = document.getElementById('main-play-area')
   // console.log(mainPlayArea);
   const keyBoxes = document.getElementsByClassName("key-box")
-  console.log(keyBoxes);
+  // console.log(keyBoxes);
 
   function randomlyLightUpKey() {
+    let boxToHighlight
     let keyBoxNumber = Math.ceil((Math.random() * keyBoxes.length) )
-    let boxToHighlight = document.getElementById(`key-box-${keyBoxNumber}`)
-    console.log(`key-box-${keyBoxNumber}`);
-    boxToHighlight.classList.add('lit-up-box')
+    boxToHighlight = document.getElementById(`key-box-${keyBoxNumber}`)
+    // console.log(`key-box-${keyBoxNumber}`);
     boxToHighlight.classList.remove('key-box')
+    boxToHighlight.classList.add('lit-up-box')
+    // console.log(boxToHighlight.innerText);
+    // checkKey(boxToHighlight)
     setTimeout(() => {
       boxToHighlight.classList.remove('lit-up-box')
       boxToHighlight.classList.add('key-box')
       setTimeout(() => {}, 50)
-    }, 950)
+    }, 1950)
   }
 
 
   function playGame() {
     setInterval(() => {
       randomlyLightUpKey()
-    }, 1000)
+      checkKey()
+    }, 2000)
   }
 
-  // playGame()
+  playGame()
+  let score = 0
 
-
+  function checkKey() {
+    window.addEventListener("keydown", (e) => {
+      e.preventDefault()
+      let highlightedBox = document.querySelector(".lit-up-box")
+      // debugger
+      if (e.key.toUpperCase() === highlightedBox.innerText[0]) {
+        e.stopPropagation()
+        score += 10
+        console.log(score)
+        // debugger
+        // implement score here
+      }
+    })
+  }
 
 })
