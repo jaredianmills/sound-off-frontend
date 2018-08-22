@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const userLoginInput = document.getElementById("user-login-input")
   const createNewUser = document.getElementById("create-new-user")
   const createNewUserInput = document.getElementById("create-new-user-input")
+  let loggedInUser
 
   const usersUrl = "http://localhost:3000/api/v1/users"
   const createUserConfig = {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({name: createNewUserInput.value})}
@@ -17,10 +18,22 @@ document.addEventListener('DOMContentLoaded', () => {
   userLogin.addEventListener("submit", event => logInUser(event))
   createNewUser.addEventListener("submit", event => createUser(event))
 
+
+  fetch(usersUrl).then(res => res.json()).then(createUserDropdown)
+  function createUserDropdown(data) {
+    data.forEach(user => {
+      userLoginInput.innerHTML += `<option value="${user.id}">${user.name}</option>`
+    })
+  }
+
+
   function logInUser(event) {
     event.preventDefault()
-    fetch(usersUrl).then(res => res.json()).then(console.log)
-    console.log(userLoginInput.value)
+    fetch(usersUrl + "/" + userLoginInput.value).then(res => res.json()).then(displayLoggedInUser)
+  }
+
+  function displayLoggedInUser(data) {
+    
   }
 
   function createUser(event) {
