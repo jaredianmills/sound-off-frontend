@@ -13,8 +13,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const startScreen = document.getElementById("start-screen")
   const scoreTracker = document.querySelector("#score-tracker span")
 
+  let continueGame = true
   let loggedInUser
   let gameInterval
+  let litUpInterval
+  let totalInterval
+  let highlightedBoxTimeout
 
   const usersUrl = "http://localhost:3000/api/v1/users"
   const scoresUrl = "http://localhost:3000/api/v1/scores"
@@ -24,8 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
     logInUser(event)
   })
   createNewUser.addEventListener("submit", event => createUser(event))
-
-
 
   fetch(usersUrl).then(res => res.json()).then(createUserDropdown)
   fetch(scoresUrl).then(res => res.json()).then(displayHighScores)
@@ -38,7 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     })
   }
-
 
   function createUserDropdown(data) {
     data.forEach(user => {
@@ -94,28 +95,29 @@ document.addEventListener('DOMContentLoaded', () => {
     boxToHighlight.classList.add('lit-up-box')
     // console.log(boxToHighlight.innerText);
     // checkKey(boxToHighlight)
-    setTimeout(() => {
+    highlightedBoxTimeout = setTimeout(() => {
       // boxToHighlight.classList.remove('lit-up-box')
       // boxToHighlight.classList.add('key-box')
       if (Array.from(boxToHighlight.classList).includes("lit-up-box")) {
         continueGame = false;
       }
-    }, 1950)
+    }, litUpInterval)
     setTimeout(() => {}, 50)
   }
 
-  let continueGame = true
 
   function playGame() {
     startScreen.style.display = 'none'
     keyBoxContainer.style.display = 'block'
+    litUpInterval = 1950
+    totalInterval = 2000
     gameInterval = setInterval(() => {
       if (continueGame === true) {
         randomlyLightUpKey()
       } else {
         gameOver()
       }
-    }, 2000)
+    }, totalInterval)
     checkKey()
   }
 
@@ -137,6 +139,31 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
+  function changeInterval() {
+    if (parseInt(scoreTracker.innerText) % 500 === 0) {
+      litUpInterval -= 500
+      totalInterval -= 500
+      clearInterval(gameInterval)
+      gameInterval = setInterval(() => {
+        if (continueGame === true) {
+          randomlyLightUpKey()
+        } else {
+          gameOver()
+        }
+      }, totalInterval)
+
+      highlightedBoxTimeout = setTimeout(() => {
+        // boxToHighlight.classList.remove('lit-up-box')
+        // boxToHighlight.classList.add('key-box')
+        if (document.querySelectorAll(".lit-up-box").length > 0) {
+          continueGame = false;
+        }
+      }, litUpInterval)
+
+    }
+    console.log(litUpInterval)
+  }
+
   function correctKeyPressed(highlightedBox) {
     highlightedBox.classList.remove('lit-up-box')
     highlightedBox.classList.add('correct-key')
@@ -145,8 +172,8 @@ document.addEventListener('DOMContentLoaded', () => {
       highlightedBox.classList.add('key-box')
     }, 100)
     scoreTracker.innerText = parseInt(scoreTracker.innerText) + 100
+    changeInterval()
   }
-
 
   function wrongKeyPressed(highlightedBox) {
     highlightedBox.classList.remove('lit-up-box')
