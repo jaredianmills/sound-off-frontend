@@ -12,33 +12,33 @@ document.addEventListener('DOMContentLoaded', () => {
   let loggedInUser
 
   const usersUrl = "http://localhost:3000/api/v1/users"
-  const createUserConfig = {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({name: createNewUserInput.value})}
 
   const scoresUrl = "http://localhost:3000/api/v1/scores"
   const scoresConfig = {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({total: 500, user_id: 1})}
   // fetch(scoresUrl, scoresConfig).then(res => res.json()).then(console.log)
 
-  userLogin.addEventListener("submit", event => logInUser(event))
+  userLogin.addEventListener("submit", event => {
+    event.preventDefault()
+    logInUser(event)
+  })
   createNewUser.addEventListener("submit", event => createUser(event))
 
-
   fetch(usersUrl).then(res => res.json()).then(createUserDropdown)
+
   function createUserDropdown(data) {
     data.forEach(user => {
       userLoginInput.innerHTML += `<option value="${user.id}">${user.name}</option>`
     })
   }
 
-
   function logInUser(event) {
-    event.preventDefault()
     fetch(usersUrl + "/" + userLoginInput.value).then(res => res.json()).then(displayLoggedInUser)
-    userLogin.style.display = 'none'
-    createNewUser.style.display = 'none'
-    keyBoxContainer.style.display = 'block'
   }
 
   function displayLoggedInUser(user) {
+    userLogin.style.display = 'none'
+    createNewUser.style.display = 'none'
+    keyBoxContainer.style.display = 'block'
     loggedInUserInfo.innerHTML = `<h3>Player: ${user.name}</h3>`
     getUserHighScore(user)
     if (user.scores.length > 0) {
@@ -54,7 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function createUser(event) {
     event.preventDefault()
-    console.log(createNewUserInput.value)
+    let createUserConfig = {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({name: createNewUserInput.value})}
+    fetch(usersUrl, createUserConfig).then(res => res.json()).then(displayLoggedInUser)
   }
 
   function randomlyLightUpKey() {
