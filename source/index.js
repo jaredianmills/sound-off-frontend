@@ -1,11 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   const mainPlayArea = document.getElementById('main-play-area')
+  const keyBoxContainer = document.getElementById('key-box-container')
   const keyBoxes = document.getElementsByClassName("key-box")
   const userLogin = document.getElementById("user-login")
   const userLoginInput = document.getElementById("user-login-input")
   const createNewUser = document.getElementById("create-new-user")
   const createNewUserInput = document.getElementById("create-new-user-input")
+  const loggedInUserInfo = document.getElementById("display-user-info")
+
   let loggedInUser
 
   const usersUrl = "http://localhost:3000/api/v1/users"
@@ -30,10 +33,23 @@ document.addEventListener('DOMContentLoaded', () => {
   function logInUser(event) {
     event.preventDefault()
     fetch(usersUrl + "/" + userLoginInput.value).then(res => res.json()).then(displayLoggedInUser)
+    userLogin.style.display = 'none'
+    createNewUser.style.display = 'none'
+    keyBoxContainer.style.display = 'block'
   }
 
-  function displayLoggedInUser(data) {
-    
+  function displayLoggedInUser(user) {
+    loggedInUserInfo.innerHTML = `<h3>Player: ${user.name}</h3>`
+    getUserHighScore(user)
+    if (user.scores.length > 0) {
+      let highScore = getUserHighScore(user)
+      loggedInUserInfo.innerHTML += `<h4>High Score: ${highScore}</h4>`
+    }
+  }
+
+  function getUserHighScore(user) {
+    let scores = user.scores.map(score => score.total)
+    return scores.sort((a, b) => b - a)[0]
   }
 
   function createUser(event) {
