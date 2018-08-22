@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function startGameEventListener() {
     window.addEventListener("keydown", event => {
       event.preventDefault()
-      if (startScreen.style.display === 'block') {  
+      if (startScreen.style.display === 'block') {
         playGame()
       }
     })
@@ -145,7 +145,6 @@ document.addEventListener('DOMContentLoaded', () => {
       highlightedBox.classList.add('key-box')
     }, 100)
     scoreTracker.innerText = parseInt(scoreTracker.innerText) + 100
-    // implement score here
   }
 
 
