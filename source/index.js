@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const createNewUser = document.getElementById("create-new-user")
   const createNewUserInput = document.getElementById("create-new-user-input")
   const loggedInUserInfo = document.getElementById("display-user-info")
+  const leaderboard = document.getElementById("leaderboard")
+  const leaderboardList = document.getElementById("leaderboard-list")
 
   let loggedInUser
 
@@ -15,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const scoresUrl = "http://localhost:3000/api/v1/scores"
   const scoresConfig = {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({total: 500, user_id: 1})}
-  // fetch(scoresUrl, scoresConfig).then(res => res.json()).then(console.log)
 
   userLogin.addEventListener("submit", event => {
     event.preventDefault()
@@ -24,6 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
   createNewUser.addEventListener("submit", event => createUser(event))
 
   fetch(usersUrl).then(res => res.json()).then(createUserDropdown)
+  fetch(scoresUrl).then(res => res.json()).then(displayHighScores)
+
 
   function createUserDropdown(data) {
     data.forEach(user => {
@@ -36,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function displayLoggedInUser(user) {
+    loggedInUser = user.id
     userLogin.style.display = 'none'
     createNewUser.style.display = 'none'
     keyBoxContainer.style.display = 'block'
@@ -56,6 +60,17 @@ document.addEventListener('DOMContentLoaded', () => {
     event.preventDefault()
     let createUserConfig = {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({name: createNewUserInput.value})}
     fetch(usersUrl, createUserConfig).then(res => res.json()).then(displayLoggedInUser)
+  }
+
+  function displayHighScores(scores) {
+    leaderboardList.innerHTML = ""
+    scores = scores.sort((a,b) => b.total - a.total)
+    scores = scores.slice(0,10)
+    scores.forEach(score => {
+      let scoreList = document.createElement("li")
+      scoreList.innerHTML = `<h4>${score.user.name}: ${score.total}</h4>`
+      leaderboardList.appendChild(scoreList)
+    })
   }
 
   function randomlyLightUpKey() {

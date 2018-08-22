@@ -1,6 +1,6 @@
 #main-play-area {
   background-color: gray;
-  width: 80%;
+  width: 75%;
   height: 80%;
 }
 
@@ -16,6 +16,15 @@
   display:none;
   top: 30%;
   position: relative;
+}
+
+#leaderboard {
+  height: 100%;
+  width: 20%;
+  background-color: grey;
+  z-index: 1;
+  float: right;
+  text-align: center;
 }
 
 .key-box {
