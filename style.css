@@ -27,6 +27,15 @@
   text-align: center;
 }
 
+#start-screen {
+  text-align: center;
+  display: none;
+}
+
+#score-tracker {
+  position: relative;
+}
+
 .key-box {
   background-color: white;
   width: 10.5%;

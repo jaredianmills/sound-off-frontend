@@ -10,13 +10,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const loggedInUserInfo = document.getElementById("display-user-info")
   const leaderboard = document.getElementById("leaderboard")
   const leaderboardList = document.getElementById("leaderboard-list")
+  const startScreen = document.getElementById("start-screen")
+  const scoreTracker = document.querySelector("#score-tracker span")
 
   let loggedInUser
+  let gameInterval
 
   const usersUrl = "http://localhost:3000/api/v1/users"
-
   const scoresUrl = "http://localhost:3000/api/v1/scores"
-  const scoresConfig = {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({total: 500, user_id: 1})}
 
   userLogin.addEventListener("submit", event => {
     event.preventDefault()
@@ -24,8 +25,19 @@ document.addEventListener('DOMContentLoaded', () => {
   })
   createNewUser.addEventListener("submit", event => createUser(event))
 
+
+
   fetch(usersUrl).then(res => res.json()).then(createUserDropdown)
   fetch(scoresUrl).then(res => res.json()).then(displayHighScores)
+
+  function startGameEventListener() {
+    window.addEventListener("keydown", event => {
+      event.preventDefault()
+      if (startScreen.style.display === 'block') {  
+        playGame()
+      }
+    })
+  }
 
 
   function createUserDropdown(data) {
@@ -42,8 +54,9 @@ document.addEventListener('DOMContentLoaded', () => {
     loggedInUser = user.id
     userLogin.style.display = 'none'
     createNewUser.style.display = 'none'
-    keyBoxContainer.style.display = 'block'
+    startScreen.style.display = 'block'
     loggedInUserInfo.innerHTML = `<h3>Player: ${user.name}</h3>`
+    startGameEventListener()
     getUserHighScore(user)
     if (user.scores.length > 0) {
       let highScore = getUserHighScore(user)
@@ -94,12 +107,13 @@ document.addEventListener('DOMContentLoaded', () => {
   let continueGame = true
 
   function playGame() {
-    let gameInterval = setInterval(() => {
+    startScreen.style.display = 'none'
+    keyBoxContainer.style.display = 'block'
+    gameInterval = setInterval(() => {
       if (continueGame === true) {
         randomlyLightUpKey()
       } else {
-        clearInterval(gameInterval)
-        alert('game over man')
+        gameOver()
       }
     }, 2000)
     checkKey()
@@ -130,8 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
       highlightedBox.classList.remove('correct-key')
       highlightedBox.classList.add('key-box')
     }, 100)
-    score += 10
-    console.log(score)
+    scoreTracker.innerText = parseInt(scoreTracker.innerText) + 100
     // implement score here
   }
 
@@ -145,8 +158,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 100)
   }
 
+  function gameOver() {
+    clearInterval(gameInterval)
+    alert(`Game over! Your score is ${scoreTracker.innerText}`)
+    postScore(parseInt(scoreTracker.innerText))
+    continueGame = true
+    keyBoxContainer.style.display = 'none'
+    startScreen.style.display = 'block'
+    scoreTracker.innerText = "0"
+  }
 
-
-  // playGame()
+  function postScore(scoreTotal) {
+    const scoresConfig = {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({total: scoreTotal, user_id: loggedInUser})}
+    fetch(scoresUrl, scoresConfig).then(data => fetch(scoresUrl)).then(res => res.json()).then(displayHighScores)
+  }
 
 })
