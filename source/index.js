@@ -1,17 +1,32 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+  const mainPlayArea = document.getElementById('main-play-area')
+  const keyBoxes = document.getElementsByClassName("key-box")
+  const userLogin = document.getElementById("user-login")
+  const userLoginInput = document.getElementById("user-login-input")
+  const createNewUser = document.getElementById("create-new-user")
+  const createNewUserInput = document.getElementById("create-new-user-input")
+
   const usersUrl = "http://localhost:3000/api/v1/users"
-  const usersConfig = {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({name: "Jack"})}
-  // fetch(usersUrl, usersConfig).then(res => res.json()).then(console.log)
+  const createUserConfig = {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({name: createNewUserInput.value})}
 
   const scoresUrl = "http://localhost:3000/api/v1/scores"
   const scoresConfig = {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({total: 500, user_id: 1})}
   // fetch(scoresUrl, scoresConfig).then(res => res.json()).then(console.log)
 
-  const mainPlayArea = document.getElementById('main-play-area')
-  // console.log(mainPlayArea);
-  const keyBoxes = document.getElementsByClassName("key-box")
-  // console.log(keyBoxes);
+  userLogin.addEventListener("submit", event => logInUser(event))
+  createNewUser.addEventListener("submit", event => createUser(event))
+
+  function logInUser(event) {
+    event.preventDefault()
+    fetch(usersUrl).then(res => res.json()).then(console.log)
+    console.log(userLoginInput.value)
+  }
+
+  function createUser(event) {
+    event.preventDefault()
+    console.log(createNewUserInput.value)
+  }
 
   function randomlyLightUpKey() {
     let keyBoxNumber = Math.ceil((Math.random() * keyBoxes.length) )
@@ -22,8 +37,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // console.log(boxToHighlight.innerText);
     // checkKey(boxToHighlight)
     setTimeout(() => {
-      boxToHighlight.classList.remove('lit-up-box')
-      boxToHighlight.classList.add('key-box')
+      // boxToHighlight.classList.remove('lit-up-box')
+      // boxToHighlight.classList.add('key-box')
+      if (Array.from(boxToHighlight.classList).includes("lit-up-box")) {
+        continueGame = false;
+      }
     }, 1950)
     setTimeout(() => {}, 50)
   }
@@ -42,7 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
     checkKey()
   }
 
-  playGame()
   let score = 0
 
   function checkKey() {
@@ -85,5 +102,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+  // playGame()
 
 })

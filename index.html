@@ -6,23 +6,35 @@
   <link rel="stylesheet" href="style.css">
   <title>Sound-Off</title>
 </head>
+
 <body>
   <div id="main-play-area">
-    <div class="key-box" id="key-box-1">
-      <h2>A</h2>
+    <div id="user-login">
+      <form action="index.html" method="post">
+        <h2>Existing User Login</h2>
+        <input type="text" id="user-login-input" placeholder="enter username"></input><br><br>
+        <input type="submit">
+      </form>
     </div>
-    <div class="key-box" id="key-box-2">
-      <h2>S</h2>
+
+    <div id="create-new-user">
+      <form action="index.html" method="post">
+        <h2>Create a New Account</h2>
+        <input type="text" id="create-new-user-input" placeholder="enter username"></input><br><br>
+        <input type="submit">
+      </form>
     </div>
-    <div class="key-box" id="key-box-3">
-      <h2>D</h2>
+
+    <div id="key-box-container">
+      <div class="key-box" id="key-box-1"><h2>A</h2></div>
+      <div class="key-box" id="key-box-2"><h2>S</h2></div>
+      <div class="key-box" id="key-box-3"><h2>D</h2></div>
+      <div class="key-box" id="key-box-4"><h2>F</h2></div>
+      <div class="key-box" id="key-box-5"><h2>J</h2></div>
+      <div class="key-box" id="key-box-6"><h2>K</h2></div>
+      <div class="key-box" id="key-box-7"><h2>L</h2></div>
+      <div class="key-box" id="key-box-8"><h2>;</h2></div>
     </div>
-    <div class="key-box" id="key-box-4">
-      <h2>F</h2></div>
-    <div class="key-box" id="key-box-5"><h2>J</h2></div>
-    <div class="key-box" id="key-box-6"><h2>K</h2></div>
-    <div class="key-box" id="key-box-7"><h2>L</h2></div>
-    <div class="key-box" id="key-box-8"><h2>;</h2></div>
   </div>
 <script src="source/index.js" charset="utf-8"></script>
 </body>

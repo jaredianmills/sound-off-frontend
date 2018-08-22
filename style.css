@@ -4,12 +4,24 @@
   height: 80%;
 }
 
+#user-login {
+  /* display:none; */
+}
+
+#create-new-user {
+  /* display:none; */
+}
+
+#key-box-container {
+  display:none;
+  top: 40%;
+  position: relative;
+}
+
 .key-box {
   background-color: white;
   width: 10.5%;
   height: 10%;
-  top: 40%;
-  position: relative;
   float: left;
   margin: 1%;
   text-align: center;
