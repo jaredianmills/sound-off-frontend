@@ -29,7 +29,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let pianoSFX = ["assets/audio/piano-ff-023.wav", "assets/audio/piano-ff-027.wav", "assets/audio/piano-ff-030.wav", "assets/audio/piano-ff-032.wav", "assets/audio/piano-ff-039.wav", "assets/audio/piano-ff-042.wav", "assets/audio/piano-ff-044.wav", "assets/audio/piano-ff-047.wav"]
 
-  let instrumentOptions = [pianoSFX]
+  let glocSFX = ["assets/audio/gloc__g1.wav", "assets/audio/gloc__f1.wav", "assets/audio/gloc__f-1.wav", "assets/audio/gloc__e1.wav", "assets/audio/gloc__d1.wav", "assets/audio/gloc__c1.wav", "assets/audio/gloc__b2.wav", "assets/audio/gloc__a2.wav",]
+
+  let synthSFX = ["assets/audio/synth-1.wav", "assets/audio/synth-2.wav", "assets/audio/synth-3.wav", "assets/audio/synth-4.wav", "assets/audio/synth-5.wav", "assets/audio/synth-6.wav", "assets/audio/synth-7.wav", "assets/audio/synth-8.wav"]
+
+  let guitarSFX = ["assets/audio/guitar-1.wav", "assets/audio/guitar-2.wav", "assets/audio/guitar-3.wav", "assets/audio/guitar-4.wav", "assets/audio/guitar-5.wav", "assets/audio/guitar-6.wav", "assets/audio/guitar-7.wav", "assets/audio/guitar-8.wav"]
+
+  let instrumentOptions = [pianoSFX, glocSFX, synthSFX, guitarSFX]
 
   // selectedSFX = pianoSFX
 
@@ -171,6 +177,8 @@ document.addEventListener('DOMContentLoaded', () => {
           playNote(e.key)
           correctKeyPressed(highlightedBox)
         } else {
+          let loser = new Audio("assets/audio/loser.wav")
+          loser.play()
           wrongKeyPressed(highlightedBox)
           continueGame = false
         }
