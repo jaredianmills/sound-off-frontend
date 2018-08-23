@@ -1,7 +1,7 @@
 #main-play-area {
   background-color: gray;
   width: 75%;
-  height: 80%;
+  height: 85%;
 }
 
 #user-login {
@@ -25,7 +25,7 @@
 }
 
 #leaderboard {
-  height: 80%;
+  height: 85%;
   width: 20%;
   background-color: grey;
   z-index: 1;

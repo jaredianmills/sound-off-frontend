@@ -1,4 +1,4 @@
-// document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
 
   const mainPlayArea = document.getElementById('main-play-area')
   const keyBoxContainer = document.getElementById('key-box-container')
@@ -139,6 +139,7 @@
       if (document.querySelector(".lit-up-box")) {
         highlightedBox = document.querySelector(".lit-up-box")
         if (e.key.toUpperCase() === highlightedBox.innerText[0]) {
+          playNote(e.key)
           correctKeyPressed(highlightedBox)
         } else {
           wrongKeyPressed(highlightedBox)
@@ -146,6 +147,35 @@
         }
       }
     })
+  }
+
+  function playNote(key) {
+    let aKey = new Audio("assets/audio/piano-ff-023.wav")
+    let sKey = new Audio("assets/audio/piano-ff-027.wav")
+    let dKey = new Audio("assets/audio/piano-ff-030.wav")
+    let fKey = new Audio("assets/audio/piano-ff-032.wav")
+    let jKey = new Audio("assets/audio/piano-ff-039.wav")
+    let kKey = new Audio("assets/audio/piano-ff-042.wav")
+    let lKey = new Audio("assets/audio/piano-ff-044.wav")
+    let semKey = new Audio("assets/audio/piano-ff-047.wav")
+
+    if (key.toLowerCase() === "a") {
+      aKey.play()
+    } else if (key.toLowerCase() === "s") {
+      sKey.play()
+    } else if (key.toLowerCase() === "d") {
+      dKey.play()
+    } else if (key.toLowerCase() === "f") {
+      fKey.play()
+    } else if (key.toLowerCase() === "j") {
+      jKey.play()
+    } else if (key.toLowerCase() === "k") {
+      kKey.play()
+    } else if (key.toLowerCase() === "l") {
+      lKey.play()
+    } else if (key.toLowerCase() === ";") {
+      semKey.play()
+    }
   }
 
   function changeInterval() {
@@ -198,7 +228,6 @@
     alert(`Game over! Your score is ${scoreTracker.innerText}`)
     let gameScore = parseInt(scoreTracker.innerText)
     let userHighScore = document.querySelector("#display-user-info span")
-    debugger
     if (gameScore > parseInt(userHighScore.innerText)) {
       userHighScore.innerText = gameScore
     }
@@ -225,4 +254,4 @@
   }
 
 
-// })
+})
