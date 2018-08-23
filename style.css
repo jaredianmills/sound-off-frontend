@@ -1,3 +1,9 @@
+@import 'https://fonts.googleapis.com/css?family=Ubuntu';
+
+body {
+    font-family: Ubuntu;
+}
+
 #main-play-area {
   background-color: gray;
   width: 75%;
@@ -5,7 +11,7 @@
   background-image: url("assets/images/piano-keys.jpeg");
   background-size: 100%;
   color: white;
-  text-shadow: 2px 3px black;
+  text-shadow: 1px 2px black;
 }
 
 #user-login {
@@ -30,12 +36,14 @@
   display:none;
   top: 15%;
   position: relative;
+  color: black;
+  text-shadow: 0px 0px;
 }
 
 #leaderboard {
   height: 85%;
   width: 20%;
-  background-color: grey;
+  background-color: #d3d3d3;
   z-index: 1;
   float: right;
   text-align: center;
@@ -60,7 +68,7 @@
 
 #title-box {
   text-align: center;
-  background-color: blue;
+  background-color: #6575B2;
 }
 
 #title {
@@ -70,7 +78,8 @@
 
 .key-box {
   background-color: white;
-  width: 10.5%;
+  border: 1px solid black;
+  width: 10%;
   height: 10%;
   float: left;
   margin: 1%;
@@ -78,8 +87,9 @@
 }
 
 .lit-up-box {
-  background-color: blue;
-  width: 10.5%;
+  background-color: #6575B2;
+  border: 1px solid black;
+  width: 10%;
   height: 10%;
   top: 40%;
   position: relative;
@@ -90,8 +100,9 @@
 
 
 .correct-key {
-  background-color: green;
-  width: 10.5%;
+  background-color: #44B55F;
+  border: 1px solid black;
+  width: 10%;
   height: 10%;
   top: 40%;
   position: relative;
@@ -102,8 +113,9 @@
 }
 
 .incorrect-key {
-  background-color: red;
-  width: 10.5%;
+  background-color: #DC403D;
+  border: 1px solid black;
+  width: 10%;
   height: 10%;
   top: 40%;
   position: relative;
@@ -114,6 +126,7 @@
 }
 
 table, th, td {
+  background-color: #6575B2;
   position: relative;
   margin-left: 18%;
   border: 1px solid black;
