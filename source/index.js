@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+// document.addEventListener('DOMContentLoaded', () => {
 
   const mainPlayArea = document.getElementById('main-play-area')
   const keyBoxContainer = document.getElementById('key-box-container')
@@ -70,9 +70,9 @@ document.addEventListener('DOMContentLoaded', () => {
     getUserHighScore(user)
     if (user.scores.length > 0) {
       let highScore = getUserHighScore(user)
-      loggedInUserInfo.innerHTML += `<h4>High Score: ${highScore}</h4>`
+      loggedInUserInfo.innerHTML += `<h4>High Score: <span>${highScore}</span></h4>`
     } else {
-      loggedInUserInfo.innerHTML += `<h4>High Score: 0</h4>`
+      loggedInUserInfo.innerHTML += `<h4>High Score: <span>0<span></h4>`
     }
   }
 
@@ -88,13 +88,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function displayHighScores(scores) {
-    leaderboardList.innerHTML = ""
+    leaderboardList.innerHTML = "<tr><th>User</th><th>Score</th></tr>"
     scores = scores.sort((a,b) => b.total - a.total)
     scores = scores.slice(0,10)
     scores.forEach(score => {
-      let scoreList = document.createElement("li")
-      scoreList.innerHTML = `<h4>${score.user.name}: ${score.total}</h4>`
-      leaderboardList.appendChild(scoreList)
+      leaderboardList.innerHTML += `<tr><td>${score.user.name}</td><td>${score.total}</td></tr>`
     })
   }
 
@@ -198,7 +196,13 @@ document.addEventListener('DOMContentLoaded', () => {
   function gameOver() {
     clearInterval(gameInterval)
     alert(`Game over! Your score is ${scoreTracker.innerText}`)
-    postScore(parseInt(scoreTracker.innerText))
+    let gameScore = parseInt(scoreTracker.innerText)
+    let userHighScore = document.querySelector("#display-user-info span")
+    debugger
+    if (gameScore > parseInt(userHighScore.innerText)) {
+      userHighScore.innerText = gameScore
+    }
+    postScore(gameScore)
     continueGame = true
     keyBoxContainer.style.display = 'none'
     startScreen.style.display = 'block'
@@ -221,4 +225,4 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-})
+// })

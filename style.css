@@ -25,7 +25,7 @@
 }
 
 #leaderboard {
-  height: 100%;
+  height: 80%;
   width: 20%;
   background-color: grey;
   z-index: 1;
@@ -82,5 +82,13 @@
   position: relative;
   float: left;
   margin: 1%;
+  text-align: center;
+}
+
+table, th, td {
+  position: relative;
+  margin-left: 18%;
+  border: 1px solid black;
+  font-size: 135%;
   text-align: center;
 }
