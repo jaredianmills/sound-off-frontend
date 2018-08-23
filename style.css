@@ -2,13 +2,21 @@
   background-color: gray;
   width: 75%;
   height: 85%;
+  background-image: url("assets/images/piano-keys.jpeg");
+  background-size: 100%;
+  color: white;
+  text-shadow: 2px 3px black;
 }
 
 #user-login {
+  color: white;
+  text-shadow: 2px 3px black;
   /* display:none; */
 }
 
 #create-new-user {
+  color: white;
+  text-shadow: 2px 3px black;
   /* display:none; */
 }
 
@@ -20,7 +28,7 @@
 
 #key-box-container {
   display:none;
-  top: 20%;
+  top: 15%;
   position: relative;
 }
 
@@ -40,6 +48,24 @@
 
 #score-tracker {
   position: relative;
+}
+
+#select-instrument {
+  display: none;
+  margin: auto;
+  width: 50%;
+  color: white;
+  text-shadow: 2px 3px black;
+}
+
+#title-box {
+  text-align: center;
+  background-color: blue;
+}
+
+#title {
+  color: white;
+  text-shadow: 2px 3px black;
 }
 
 .key-box {
@@ -72,6 +98,7 @@
   float: left;
   margin: 1%;
   text-align: center;
+  font-size: 80%;
 }
 
 .incorrect-key {
@@ -83,6 +110,7 @@
   float: left;
   margin: 1%;
   text-align: center;
+  line-height: 270%;
 }
 
 table, th, td {

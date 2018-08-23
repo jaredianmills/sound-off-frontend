@@ -4,21 +4,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="style.css">
-  <title>Sound-Off</title>
+  <title>Sound Off</title>
 </head>
 
 <body>
   <div id="leaderboard">
     <h3>All-Time High Scores</h3>
     <table id="leaderboard-list">
-  
     </table>
-
     <!-- <ol id="leaderboard-list"> -->
     <!-- </ol> -->
   </div>
 
+
   <div id="main-play-area">
+
+    <div id='title-box'><h1 id='title'>Sound Off</h1></div>
+
     <div id="user-login">
       <form action="index.html" method="post">
         <h2>Existing User Login</h2>
@@ -28,7 +30,7 @@
     </div>
 
     <div id="create-new-user">
-      <form action="index.html" method="post">
+      <form action="#" method="post">
         <h2>Create a New Account</h2>
         <input type="text" id="create-new-user-input" placeholder="enter username"></input><br><br>
         <input type="submit">
@@ -48,6 +50,16 @@
       <h1>Press the keys as they light up.</h1>
       <h1>If you miss a key or type the wrong one, the game is over.</h1>
       <h1>To start the game, press any key.</h1>
+    </div>
+
+    <div id="select-instrument">
+      <form action="#" method="post">
+        <h2>Select an Instrument</h2>
+        <select id="select-instrument-input">
+          <option value="0">Piano</option>
+        </select>
+        <input type="submit">
+      </form>
     </div>
 
     <div id="key-box-container">

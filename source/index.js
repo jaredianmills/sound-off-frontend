@@ -14,6 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const scoreTracker = document.querySelector("#score-tracker span")
   const logOutButton = document.getElementById("log-out-user")
   const userInfo = document.getElementById("display-user-info")
+  const selectInstrument = document.getElementById("select-instrument")
+  const selectInstrumentInput = document.getElementById("select-instrument-input")
+
 
   let continueGame = true
   let loggedInUser
@@ -21,6 +24,18 @@ document.addEventListener('DOMContentLoaded', () => {
   let litUpInterval
   let totalInterval
   let highlightedBoxTimeout
+
+  let selectedSFX
+
+  let pianoSFX = ["assets/audio/piano-ff-023.wav", "assets/audio/piano-ff-027.wav", "assets/audio/piano-ff-030.wav", "assets/audio/piano-ff-032.wav", "assets/audio/piano-ff-039.wav", "assets/audio/piano-ff-042.wav", "assets/audio/piano-ff-044.wav", "assets/audio/piano-ff-047.wav"]
+
+  let instrumentOptions = [pianoSFX]
+
+  // selectedSFX = pianoSFX
+
+
+
+
 
   const usersUrl = "http://localhost:3000/api/v1/users"
   const scoresUrl = "http://localhost:3000/api/v1/scores"
@@ -41,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function startGameEventListener() {
     window.addEventListener("keydown", event => {
-      event.preventDefault()
+      // event.preventDefault()
       if (startScreen.style.display === 'block') {
         playGame()
       }
@@ -63,10 +78,12 @@ document.addEventListener('DOMContentLoaded', () => {
     loggedInUser = user.id
     userLogin.style.display = 'none'
     createNewUser.style.display = 'none'
-    startScreen.style.display = 'block'
+    // startScreen.style.display = 'block'
+    selectInstrument.style.display = "block"
     logOutButton.style.display = 'block'
     loggedInUserInfo.innerHTML = `<h3>Player: ${user.name}</h3>`
-    startGameEventListener()
+    selectInstrumentEventListener()
+    // startGameEventListener()
     getUserHighScore(user)
     if (user.scores.length > 0) {
       let highScore = getUserHighScore(user)
@@ -74,6 +91,18 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       loggedInUserInfo.innerHTML += `<h4>High Score: <span>0<span></h4>`
     }
+  }
+
+  function selectInstrumentEventListener() {
+    selectInstrument.addEventListener("submit", (event) => {
+      event.preventDefault()
+      let index = parseInt(selectInstrumentInput.value)
+      selectedSFX = instrumentOptions[index]
+      console.log(selectedSFX)
+      selectInstrument.style.display = 'none'
+      startScreen.style.display = 'block'
+      startGameEventListener()
+    })
   }
 
   function getUserHighScore(user) {
@@ -134,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function checkKey() {
     window.addEventListener("keydown", (e) => {
-      e.preventDefault()
+      // e.preventDefault()
       let highlightedBox
       if (document.querySelector(".lit-up-box")) {
         highlightedBox = document.querySelector(".lit-up-box")
@@ -149,15 +178,18 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
+
+
+
   function playNote(key) {
-    let aKey = new Audio("assets/audio/piano-ff-023.wav")
-    let sKey = new Audio("assets/audio/piano-ff-027.wav")
-    let dKey = new Audio("assets/audio/piano-ff-030.wav")
-    let fKey = new Audio("assets/audio/piano-ff-032.wav")
-    let jKey = new Audio("assets/audio/piano-ff-039.wav")
-    let kKey = new Audio("assets/audio/piano-ff-042.wav")
-    let lKey = new Audio("assets/audio/piano-ff-044.wav")
-    let semKey = new Audio("assets/audio/piano-ff-047.wav")
+    let aKey = new Audio(selectedSFX[0])
+    let sKey = new Audio(selectedSFX[1])
+    let dKey = new Audio(selectedSFX[2])
+    let fKey = new Audio(selectedSFX[3])
+    let jKey = new Audio(selectedSFX[4])
+    let kKey = new Audio(selectedSFX[5])
+    let lKey = new Audio(selectedSFX[6])
+    let semKey = new Audio(selectedSFX[7])
 
     if (key.toLowerCase() === "a") {
       aKey.play()
@@ -179,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function changeInterval() {
-    if (parseInt(scoreTracker.innerText) % 500 === 0 && totalInterval > 500) {
+    if (parseInt(scoreTracker.innerText) % 500 === 0 && totalInterval > 400) {
       litUpInterval -= 100
       totalInterval -= 100
       clearInterval(gameInterval)
