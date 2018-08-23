@@ -12,9 +12,15 @@
   /* display:none; */
 }
 
+#log-out-user {
+  /* float: left; */
+  display: none;
+  position: relative;
+}
+
 #key-box-container {
   display:none;
-  top: 30%;
+  top: 20%;
   position: relative;
 }
 

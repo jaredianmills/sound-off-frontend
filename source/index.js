@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const leaderboardList = document.getElementById("leaderboard-list")
   const startScreen = document.getElementById("start-screen")
   const scoreTracker = document.querySelector("#score-tracker span")
+  const logOutButton = document.getElementById("log-out-user")
+  const userInfo = document.getElementById("display-user-info")
 
   let continueGame = true
   let loggedInUser
@@ -28,6 +30,11 @@ document.addEventListener('DOMContentLoaded', () => {
     logInUser(event)
   })
   createNewUser.addEventListener("submit", event => createUser(event))
+  logOutButton.addEventListener("click", event => {
+    event.preventDefault()
+    logUserOut()
+  })
+
 
   fetch(usersUrl).then(res => res.json()).then(createUserDropdown)
   fetch(scoresUrl).then(res => res.json()).then(displayHighScores)
@@ -52,16 +59,20 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function displayLoggedInUser(user) {
+    userInfo.style.display = "block"
     loggedInUser = user.id
     userLogin.style.display = 'none'
     createNewUser.style.display = 'none'
     startScreen.style.display = 'block'
+    logOutButton.style.display = 'block'
     loggedInUserInfo.innerHTML = `<h3>Player: ${user.name}</h3>`
     startGameEventListener()
     getUserHighScore(user)
     if (user.scores.length > 0) {
       let highScore = getUserHighScore(user)
       loggedInUserInfo.innerHTML += `<h4>High Score: ${highScore}</h4>`
+    } else {
+      loggedInUserInfo.innerHTML += `<h4>High Score: 0</h4>`
     }
   }
 
@@ -140,9 +151,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function changeInterval() {
-    if (parseInt(scoreTracker.innerText) % 500 === 0) {
-      litUpInterval -= 500
-      totalInterval -= 500
+    if (parseInt(scoreTracker.innerText) % 500 === 0 && totalInterval > 500) {
+      litUpInterval -= 100
+      totalInterval -= 100
       clearInterval(gameInterval)
       gameInterval = setInterval(() => {
         if (continueGame === true) {
@@ -198,5 +209,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const scoresConfig = {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({total: scoreTotal, user_id: loggedInUser})}
     fetch(scoresUrl, scoresConfig).then(data => fetch(scoresUrl)).then(res => res.json()).then(displayHighScores)
   }
+
+  function logUserOut() {
+    loggedInUser = null
+    keyBoxContainer.style.display = "none"
+    startScreen.style.display = "none"
+    userLogin.style.display = "block"
+    createNewUser.style.display = "block"
+    logOutButton.style.display = "none"
+    userInfo.style.display = "none"
+  }
+
 
 })
