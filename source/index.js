@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let litUpInterval
   let totalInterval
   let highlightedBoxTimeout
+  let loser = new Audio("assets/audio/loser.wav")
 
   let selectedSFX
 
@@ -124,6 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
     event.preventDefault()
     let createUserConfig = {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({name: createNewUserInput.value})}
     fetch(usersUrl, createUserConfig).then(res => res.json()).then(displayLoggedInUser)
+    createNewUserInput.value = ""
   }
 
   function displayHighScores(scores) {
@@ -163,6 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (continueGame === true) {
         randomlyLightUpKey()
       } else {
+        loser.play()
         gameOver()
       }
     }, totalInterval)
@@ -181,7 +184,6 @@ document.addEventListener('DOMContentLoaded', () => {
           playNote(e.key)
           correctKeyPressed(highlightedBox)
         } else {
-          let loser = new Audio("assets/audio/loser.wav")
           loser.play()
           wrongKeyPressed(highlightedBox)
           continueGame = false
@@ -231,6 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (continueGame === true) {
           randomlyLightUpKey()
         } else {
+          loser.play()
           gameOver()
         }
       }, totalInterval)
