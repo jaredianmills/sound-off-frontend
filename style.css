@@ -6,12 +6,12 @@ body {
 
 #main-play-area {
   /* background-color: gray; */
-  width: 75%;
+  width: 70%;
   height: 85%;
   background-image: url("assets/images/piano-keys.jpeg");
   background-repeat: no-repeat;
-  background-size: 300%;
-  background-position: center;
+  background-size: 450%;
+  background-position: 45% 40%;
   color: white;
   text-shadow: 1px 2px black;
   border: 1px solid black;
@@ -51,13 +51,32 @@ body {
 
 #leaderboard {
   height: 85%;
-  width: 20%;
-  background-color: #d3d3d3;
+  width: 25%;
+  /* background-color: #d3d3d3; */
+  background-image: url("assets/images/guitar-img.jpg");
+  background-repeat: no-repeat;
+  background-size: 1000%;
+  background-position: 45% 58%;
   z-index: 1;
   float: right;
   text-align: center;
   position: relative;
   border: 1px solid black;
+  flex-wrap: wrap;
+}
+
+#leaderboard h2 {
+  color: white;
+  text-shadow: 1px 2px black;
+  background-color: rgba(101, 117, 178, 0.55);
+  border: 1px solid black;
+  /* border: 1px solid black; */
+}
+
+#leaderboard-container {
+  /* width: 100%; */
+  display:block;
+  position: relative;
 }
 
 #start-screen {
@@ -85,12 +104,12 @@ body {
 
 #title-box {
   text-align: center;
-  background-color: #6575B2;
+  /* background-color: #6575B2; */
+  background-color: rgba(101, 117, 178, 0.6);
   border: 1px solid black;
   /* display: inline; */
-
   position: relative;
-  height: 20%;
+  height: 15%;
   width: 100%;
 }
 
@@ -149,10 +168,13 @@ body {
 }
 
 table, th, td {
-  background-color: #6575B2;
+  /* background-color: #6575B2; */
+  background-color: rgba(101, 117, 178, 0.55);
   position: relative;
   /* margin-left: 18%; */
   border: 1px solid black;
   font-size: 135%;
   text-align: center;
+  width: 100%;
+  /* opacity: 0.7; */
 }

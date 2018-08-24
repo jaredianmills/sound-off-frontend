@@ -8,64 +8,67 @@
 </head>
 
 <body>
+
   <div id="leaderboard">
-    <h2>All-Time High Scores</h2>
-    <table id="leaderboard-list">
-    </table>
-    <!-- <ol id="leaderboard-list"> -->
-    <!-- </ol> -->
+    <div id="leaderboard-container">
+      <h2>All-Time High Scores</h2>
+      <br>
+      <table id="leaderboard-list">
+      </table>
+    </div>
   </div>
+
 
 
   <div id="main-play-area">
 
-  <div id="container">
-    <div id='title-box'><h1 id='title'>Sound Off</h1></div>
+    <div id="container">
+      <div id='title-box'><h1 id='title'>Sound Off</h1></div>
 
-    <div id="user-login">
-      <form action="index.html" method="post">
-        <h2>Existing User Login</h2>
-        <select id="user-login-input"></select>
-        <input type="submit">
-      </form>
-    </div>
-
-    <div id="create-new-user">
-      <form action="#" method="post">
-        <h2>Create a New Account</h2>
-        <input type="text" id="create-new-user-input" placeholder="enter username"></input><br><br>
-        <input type="submit">
-      </form>
-    </div>
-      <div id="display-user-info">
-      </div>
-
-      <button id="log-out-user">
-        logout
-      </button>
-
-      <div id="start-screen">
-        <h3>Welcome to Sound Off!</h3>
-        <br>
-        <h3>Press the keys as they light up.</h3>
-        <h3>If you miss a key or type the wrong one, the game is over.</h3>
-        <h3>To start the game, press any key.</h3>
-      </div>
-
-      <div id="select-instrument">
-        <form action="#" method="post">
-          <h2>Select an Instrument</h2>
-          <select id="select-instrument-input">
-            <option value="0">Piano</option>
-            <option value="1">Glockenspiel</option>
-            <option value="2">Synth</option>
-            <option value="3">Guitar</option>
-            <option value="4">Strings</option>
-            <option value="5">Chorus</option>
-          </select>
+      <div id="user-login">
+        <form action="index.html" method="post">
+          <h2>Existing User Login</h2>
+          <select id="user-login-input"></select>
           <input type="submit">
         </form>
       </div>
+
+      <div id="create-new-user">
+        <form action="#" method="post">
+          <h2>Create a New Account</h2>
+          <input type="text" id="create-new-user-input" placeholder="enter username"></input><br><br>
+          <input type="submit">
+        </form>
+      </div>
+        <div id="display-user-info">
+        </div>
+
+        <button id="log-out-user">
+          logout
+        </button>
+
+        <div id="start-screen">
+          <h3>Let's Play Sound Off!</h3>
+          <br>
+          <h3>Press the keys as they light up.</h3>
+          <h3>If you miss a key or type the wrong one, the game is over.</h3>
+          <h3>To start the game, press any key.</h3>
+        </div>
+
+        <div id="select-instrument">
+          <form action="#" method="post">
+            <h2>Select an Instrument</h2>
+            <select id="select-instrument-input">
+              <option value="0">Piano</option>
+              <option value="1">Glockenspiel</option>
+              <option value="2">Synth</option>
+              <option value="3">Guitar</option>
+              <option value="4">Strings</option>
+              <option value="5">Chorus</option>
+            </select>
+            <input type="submit">
+          </form>
+        </div>
 
       <div id="key-box-container">
         <div class="key-box" id="key-box-1"><h2>A</h2></div>
@@ -80,8 +83,9 @@
           <h1>Score: <span>0</span></h2>
           </div>
         </div>
+    </div>
   </div>
-  </div>
+
 <script src="source/index.js" charset="utf-8"></script>
 </body>
 </html>
