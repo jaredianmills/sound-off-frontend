@@ -55,7 +55,15 @@ document.addEventListener('DOMContentLoaded', () => {
     event.preventDefault()
     logInUser(event)
   })
-  createNewUser.addEventListener("submit", event => createUser(event))
+  createNewUser.addEventListener("submit", event => {
+    event.preventDefault()
+    if (createNewUserInput.value != "") {
+      createUser(event)
+    } else {
+      alert("User name cannot be empty")
+    }
+  })
+
   logOutButton.addEventListener("click", event => {
     event.preventDefault()
     logUserOut()
@@ -122,7 +130,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function createUser(event) {
-    event.preventDefault()
     let createUserConfig = {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({name: createNewUserInput.value})}
     fetch(usersUrl, createUserConfig).then(res => res.json()).then(displayLoggedInUser)
     createNewUserInput.value = ""
@@ -191,8 +198,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     })
   }
-
-
 
 
   function playNote(key) {
@@ -295,6 +300,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function logUserOut() {
+    fetch(usersUrl).then(res => res.json()).then(createUserDropdown)
     loggedInUser = null
     keyBoxContainer.style.display = "none"
     startScreen.style.display = "none"
