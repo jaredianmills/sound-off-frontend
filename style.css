@@ -9,20 +9,24 @@ body {
   width: 75%;
   height: 85%;
   background-image: url("assets/images/piano-keys.jpeg");
+  background-repeat: no-repeat;
   background-size: 100%;
   color: white;
   text-shadow: 1px 2px black;
+  border: 1px solid black;
 }
 
 #user-login {
   color: white;
   text-shadow: 2px 3px black;
   /* display:none; */
+  position: relative;
 }
 
 #create-new-user {
   color: white;
   text-shadow: 2px 3px black;
+  position: relative;
   /* display:none; */
 }
 
@@ -47,6 +51,8 @@ body {
   z-index: 1;
   float: right;
   text-align: center;
+  position: relative;
+  border: 1px solid black;
 }
 
 #start-screen {
@@ -69,6 +75,7 @@ body {
 #title-box {
   text-align: center;
   background-color: #6575B2;
+  border: 1px solid black;
 }
 
 #title {
@@ -128,7 +135,7 @@ body {
 table, th, td {
   background-color: #6575B2;
   position: relative;
-  margin-left: 18%;
+  /* margin-left: 18%; */
   border: 1px solid black;
   font-size: 135%;
   text-align: center;

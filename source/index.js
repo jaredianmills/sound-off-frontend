@@ -269,11 +269,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function gameOver() {
     clearInterval(gameInterval)
-    alert(`Game over! Your score is ${scoreTracker.innerText}`)
     let gameScore = parseInt(scoreTracker.innerText)
     let userHighScore = document.querySelector("#display-user-info span")
     if (gameScore > parseInt(userHighScore.innerText)) {
+      let celebrationSFX = new Audio("assets/audio/yeah.mp3")
+      celebrationSFX.play()
       userHighScore.innerText = gameScore
+      alert(`New High Score: ${scoreTracker.innerText}!`)
+    } else {
+      alert(`Game over! Your score is ${scoreTracker.innerText}`)
     }
     postScore(gameScore)
     continueGame = true
