@@ -37,7 +37,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let stringsSFX = ["assets/audio/strings-bow-1.wav", "assets/audio/strings-bow-2.wav", "assets/audio/strings-bow-3.wav", "assets/audio/strings-bow-4.wav", "assets/audio/strings-bow-5.wav", "assets/audio/strings-bow-6.wav", "assets/audio/strings-bow-7.wav", "assets/audio/strings-bow-8.wav"]
 
-  let instrumentOptions = [pianoSFX, glocSFX, synthSFX, guitarSFX, stringsSFX]
+  let chorusSFX = ["assets/audio/chorus-1.wav", "assets/audio/chorus-2.wav", "assets/audio/chorus-3.wav", "assets/audio/chorus-4.wav", "assets/audio/chorus-5.wav", "assets/audio/chorus-6.wav", "assets/audio/chorus-7.wav", "assets/audio/chorus-8.mp3"]
+
+  let instrumentOptions = [pianoSFX, glocSFX, synthSFX, guitarSFX, stringsSFX, chorusSFX]
 
   // selectedSFX = pianoSFX
 
