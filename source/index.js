@@ -48,8 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-  const usersUrl = "http://localhost:3000/api/v1/users"
-  const scoresUrl = "http://localhost:3000/api/v1/scores"
+  const usersUrl = "http://ancient-eyrie-51501.herokuapp.com/api/v1/users"
+  const scoresUrl = "http://ancient-eyrie-51501.herokuapp.com/api/v1/scores"
 
   userLogin.addEventListener("submit", event => {
     event.preventDefault()
