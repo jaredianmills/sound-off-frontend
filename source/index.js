@@ -48,8 +48,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+<<<<<<< HEAD
   const usersUrl = "https://soundoff-api.herokuapp.com/api/v1/users"
   const scoresUrl = "https://soundoff-api.herokuapp.com/api/v1/scores"
+=======
+  const usersUrl = "https://ancient-eyrie-51501.herokuapp.com/api/v1/users"
+  const scoresUrl = "https://ancient-eyrie-51501.herokuapp.com/api/v1/scores"
+>>>>>>> 5e0d71c846aea49202ea4a5a4cff7418beb0fdee
 
   userLogin.addEventListener("submit", event => {
     event.preventDefault()
